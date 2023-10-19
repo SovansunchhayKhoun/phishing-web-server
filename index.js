@@ -12,7 +12,9 @@ const authRoute = require("./route/auth");
 const userRoute = require("./route/user");
 
 app.use(cors(corsOptions));
-connect();
+// Uncomment if there's a link to a mongodb database
+// connect(); 
+
 app.use(
   express.urlencoded({
     extended: false,
@@ -34,9 +36,11 @@ app.use("*", (req, res) => {
   return res.send("Endpoint Not found");
 });
 
-mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDb");
-  app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-  });
+// Uncomment if there's a link to a mongodb database
+// mongoose.connection.once("open", () => {
+//   console.log("Connected to MongoDb");
+// });
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
